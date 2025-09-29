@@ -1,0 +1,39 @@
+@use './particleEffect.scss' as particleEffect;
+
+// 变量定义
+:root {
+  --primary-color: #42b883;
+  --secondary-color: #347474;
+  --text-color: #2c3e50;
+}
+
+// 全局样式重置
+* {
+  margin: 0;
+  padding: 0;
+  border: none;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  color: var(--text-color);
+  background-color: #f8fafc;
+}
+
+.main-content {
+  flex: 1;
+  background: linear-gradient(180deg, rgb(240, 240, 240) 95%, var(--green--levelTwo));
+  overflow-y: auto;
+  padding: 0 24px;
+  min-height: calc(100vh - 102px);
+}
+
+.main_body {
+  padding: 8px 24px;
+}
+.main_body_content{
+  background-color: #fff;
+  border-radius: 8px;
+}
+

@@ -1,0 +1,39 @@
+/* 烟花效果的样式 */
+.particle-effect {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--green--levelOne);  /* 可自定义颜色 */
+  border-radius: 50%;
+  transform: scale(0);
+  animation: particleAnimation 1s ease-out forwards, fireworks 1s ease-out forwards;
+  pointer-events: none; /* 确保不会影响点击事件 */
+  z-index: 99999;
+}
+
+@keyframes particleAnimation {
+  0% {
+    transform: scale(0) translate(-50%, -50%);
+    opacity: 1;
+  }
+  30% {
+    transform: scale(1) translate(-50%, -50%);
+    opacity: 0.8;
+  }
+  100% {
+    transform: scale(1.5) translate(-50%, -50%);
+    opacity: 0;
+  }
+}
+
+/* 修改后的烟花爆炸效果 */
+@keyframes fireworks {
+  0% {
+    transform: scale(0) translate(-50%, -50%);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(1) translate(var(--x), var(--y)); /* 使用CSS变量控制方向 */
+    opacity: 0;
+  }
+}

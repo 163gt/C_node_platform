@@ -1,0 +1,54 @@
+// 变量定义
+:root {
+    --text--white: #ffffff;
+    --text--black: #000000;
+    --text--purple:#b5179e;
+
+    --green--levelOne: #10a656;
+    --green--levelTwo: #C0F4D8CC;
+
+    --red--levelOne: #EB5757;
+    --red--levelTwo: #ffdada;
+
+    --purple--levelOne: #b5179e;
+    --purple--levelTwo: #E8E8FF;
+}
+
+.headerTop_bgc {
+    background: linear-gradient(180deg,
+            var(--green--levelOne),
+            rgba(255, 255, 255, 0.8) 100%);
+}
+
+.btn_green {
+    border: 1px solid var(--green--levelOne) !important;
+    color: var(--green--levelOne) !important;
+}
+
+.btn_green:hover {
+    background: var(--green--levelOne) !important;
+    border: 1px solid var(--green--levelOne) !important;
+    color: var(--text--white) !important;
+}
+
+.btn_red {
+    border: 1px solid var(--red--levelOne) !important;
+    color: var(--red--levelOne) !important;
+}
+
+.btn_red:hover {
+    background: var(--red--levelOne) !important;
+    color: var(--text--white) !important;
+}
+
+.btn_purple {
+    border: 1px solid var(--purple--levelOne) !important;
+    color: var(--purple--levelOne) !important;
+}
+
+.btn_purple:hover {
+    background: var(--purple--levelOne) !important;
+    border: 1px solid var(--purple--levelOne) !important;
+    color: var(--text--white) !important;
+    box-shadow: none;
+}
