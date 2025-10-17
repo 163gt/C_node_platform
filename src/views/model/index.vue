@@ -13,29 +13,47 @@
             <n-icon :component="FlashOutline" />
           </template>
         </NInput>
-        <NButton
-          class="header_box_item btn_purple"
-          @click="search"
-          ghost
-          style="width: 60px; height: 40px"
-          >搜 索</NButton
+
+        <CButton @click="search" :icon="SearchCircle" type="CSuccess"
+          >搜 索</CButton
         >
-        <NButton
-          class="header_box_item btn_green"
-          @click="addModelShow()"
-          style="width: 60px; height: 40px"
-          >添 加</NButton
+        <CButton @click="addModelShow()" :icon="AddCircle" type="CPrimary"
+          >添 加</CButton
         >
       </div>
-      <div class="content_box">
-        
-      </div>
+      <div class="content_box"></div>
     </div>
+    <NModal
+      v-model:show="modelShowModal"
+      preset="dialog"
+      title="Dialog"
+      draggable
+      style="width: 50%; border-radius: 8px"
+    >
+      <template #header>
+        <div>标题</div>
+      </template>
+      <div>789</div>
+      <template #action>
+        <CButton :icon="AddCircle" type="CPrimary">添 加</CButton>
+        <CButton @click="closeModal" :icon="ReturnDownBackOutline"
+          >取 消</CButton
+        >
+      </template>
+    </NModal>
   </div>
 </template>
 <script setup>
 import { ref } from "vue";
-import { FlashOutline, HelpCircle } from "@vicons/ionicons5";
+import {
+  FlashOutline,
+  HelpCircle,
+  SearchCircle,
+  AddCircle,
+  ReturnDownBackOutline,
+} from "@vicons/ionicons5";
+
+const modelShowModal = ref(false);
 
 //模型列表查询参数
 const modelParams = ref({
@@ -47,7 +65,16 @@ const modelParams = ref({
 //搜索
 const search = () => {};
 //添加模型
-const addModelShow = () => {};
+const addModelShow = (item) => {
+  if (item) {
+  } else {
+    modelShowModal.value = true;
+  }
+};
+
+const closeModal = () => {
+  modelShowModal.value = false;
+};
 </script>
 <style scoped>
 .header_box {

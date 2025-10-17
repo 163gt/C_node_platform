@@ -76,20 +76,14 @@
         </n-form>
         <template #footer>
           <n-spin :show="DictItemListSpin">
-            <n-button
-              @click="setdictInfo"
-              style="margin: 0 8px"
-              secondary
-              type="primary"
-              >{{ dictStatus.btn === 1 ? "添 加" : "修 改" }}</n-button
-            >
-            <n-button
-              @click="closedictShow"
-              style="margin: 0 8px"
-              secondary
-              type="warning"
-              >取 消</n-button
-            >
+            <div style="display: flex">
+              <CButton @click="setdictInfo" :icon="AddCircle" type="CPrimary">{{
+                dictStatus.btn === 1 ? "添 加" : "修 改"
+              }}</CButton>
+              <CButton @click="closedictShow" :icon="ReturnDownBackOutline"
+                >取 消</CButton
+              >
+            </div>
           </n-spin>
         </template>
       </n-drawer-content>
@@ -102,7 +96,11 @@ import { useRoute } from "vue-router";
 import { queryDictItem, createDictItem, updateDictItem } from "@/api/dict";
 import Pagination from "@/components/table/pagination.vue";
 import DictTag from "@/components/dictTag/dictTag.vue";
-import { FlashOutline, AddCircle } from "@vicons/ionicons5";
+import {
+  FlashOutline,
+  AddCircle,
+  ReturnDownBackOutline,
+} from "@vicons/ionicons5";
 const route = useRoute();
 //校验参数ref
 const formRef = ref(null);

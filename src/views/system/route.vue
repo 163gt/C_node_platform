@@ -16,7 +16,7 @@
         <CButton @click="search" :icon="SearchCircle" type="CSuccess"
           >搜 索</CButton
         >
-        <CButton @click="addMenuShow" :icon="AddCircle" type="CPrimary"
+        <CButton @click="addMenuShow()" :icon="AddCircle" type="CPrimary"
           >添 加</CButton
         >
       </div>
@@ -164,20 +164,14 @@
         </n-form>
         <template #footer>
           <n-spin :show="menuShowSpin">
-            <n-button
-              @click="setMenuInfo"
-              style="margin: 0 8px"
-              secondary
-              type="primary"
-              >{{ menuStatus.btn === 1 ? "添 加" : "修 改" }}</n-button
-            >
-            <n-button
-              @click="closeMenuShow"
-              style="margin: 0 8px"
-              secondary
-              type="warning"
-              >取 消</n-button
-            >
+            <div style="display: flex">
+              <CButton @click="setMenuInfo" :icon="AddCircle" type="CPrimary">{{
+                menuStatus.btn === 1 ? "添 加" : "修 改"
+              }}</CButton>
+              <CButton @click="closeMenuShow" :icon="ReturnDownBackOutline"
+                >取 消</CButton
+              >
+            </div>
           </n-spin>
         </template>
       </n-drawer-content>
@@ -199,6 +193,7 @@ import {
   HelpCircle,
   SearchCircle,
   AddCircle,
+  ReturnDownBackOutline,
 } from "@vicons/ionicons5";
 import Pagination from "@/components/table/pagination.vue";
 import DictTag from "@/components/dictTag/dictTag.vue";
@@ -419,9 +414,9 @@ watch(menuShow, (newValue, oldValue) => {
 });
 </script>
 <style scoped>
-.n-spin-container {
+/* .n-spin-container {
   width: 100%;
-}
+} */
 .header_box {
   width: 100%;
   height: auto;

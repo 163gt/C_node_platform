@@ -21,7 +21,7 @@
           class="tab-icon"
           @click.native="deleteKeepAliveRoute(item, $event)"
         >
-          <RemoveCircle />
+          <CloseOutline />
         </Icon>
         <!-- 右键窗口 -->
         <!-- <div
@@ -47,8 +47,8 @@
           placement="left"
         >
           <template #trigger>
-            <Icon size="28" @click="keepNavTool(1)">
-              <RefreshCircleOutline :class="{ rotating: isRotating }" />
+            <Icon size="22" @click="keepNavTool(1)">
+              <ReloadOutline :class="{ rotating: isRotating }" />
             </Icon>
           </template>
           <span>刷新页面</span>
@@ -63,7 +63,7 @@ import { ref, watch, nextTick } from "vue";
 import { routeStore } from "@/stores/routeStore";
 import { useRoute, useRouter } from "vue-router";
 import { Icon } from "@vicons/utils";
-import { BackspaceOutline, RefreshCircleOutline,RemoveCircle } from "@vicons/ionicons5";
+import { BackspaceOutline, ReloadOutline,CloseOutline } from "@vicons/ionicons5";
 
 // 引入 Pinia store
 const keepAliveRoute = routeStore(); // 从 Pinia 中获取 store 实例

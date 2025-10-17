@@ -116,20 +116,15 @@
         <template #footer>
           <n-spin :show="userShowSpin">
             <div style="display: flex">
-              <div style="flex: 1">
-                <n-button
+              <div style="flex: 1; display: flex">
+                <CButton
                   @click="setuserInfo"
-                  style="margin: 0 8px"
-                  secondary
-                  type="primary"
-                  >{{ showTag === 1 ? "添 加" : "修 改" }}</n-button
+                  :icon="AddCircle"
+                  type="CPrimary"
+                  >{{ showTag === 1 ? "添 加" : "修 改" }}</CButton
                 >
-                <n-button
-                  @click="closeuserShow"
-                  style="margin: 0 8px"
-                  secondary
-                  type="warning"
-                  >取 消</n-button
+                <CButton @click="closeuserShow" :icon="ReturnDownBackOutline"
+                  >取 消</CButton
                 >
               </div>
               <n-popconfirm
@@ -139,8 +134,8 @@
                 positive-text="确定"
               >
                 <template #trigger>
-                  <n-button style="margin: 0 8px" secondary type="error"
-                    >删 除</n-button
+                  <CButton @click="closeuserShow" :icon="TrashBin" type="CWarning"
+                    >删 除</CButton
                   >
                 </template>
                 确定删除该用户？
@@ -161,6 +156,8 @@ import {
   HelpCircle,
   SearchCircle,
   AddCircle,
+  ReturnDownBackOutline,
+  TrashBin
 } from "@vicons/ionicons5";
 import Pagination from "@/components/table/pagination.vue";
 import UploadFile from "@/components/upload/uploadFile.vue";
@@ -311,9 +308,9 @@ watch(userShow, (newValue, oldValue) => {
 });
 </script>
 <style scoped>
-.n-spin-container {
+/* .n-spin-container {
   width: 100%;
-}
+} */
 .header_box {
   width: 100%;
   height: auto;

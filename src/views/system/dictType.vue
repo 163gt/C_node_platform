@@ -16,7 +16,7 @@
         <CButton @click="search" :icon="SearchCircle" type="CSuccess"
           >搜 索</CButton
         >
-        <CButton @click="addDictShow" :icon="AddCircle" type="CPrimary"
+        <CButton @click="addDictShow()" :icon="AddCircle" type="CPrimary"
           >添 加</CButton
         >
       </div>
@@ -72,20 +72,14 @@
         </n-form>
         <template #footer>
           <n-spin :show="DictShowSpin">
-            <n-button
-              @click="setdictInfo"
-              style="margin: 0 8px"
-              secondary
-              type="primary"
-              >{{ dictStatus.btn === 1 ? "添 加" : "修 改" }}</n-button
-            >
-            <n-button
-              @click="closedictShow"
-              style="margin: 0 8px"
-              secondary
-              type="warning"
-              >取 消</n-button
-            >
+            <div style="display: flex">
+              <CButton @click="setdictInfo" :icon="AddCircle" type="CPrimary">{{
+                dictStatus.btn === 1 ? "添 加" : "修 改"
+              }}</CButton>
+              <CButton @click="closedictShow" :icon="ReturnDownBackOutline"
+                >取 消</CButton
+              >
+            </div>
           </n-spin>
         </template>
       </n-drawer-content>
@@ -94,13 +88,12 @@
 </template>
 <script setup>
 import { ref, h, onMounted, watch, reactive } from "vue";
-import { FlashOutline, SearchCircle, AddCircle } from "@vicons/ionicons5";
+import { FlashOutline, SearchCircle, AddCircle,ReturnDownBackOutline } from "@vicons/ionicons5";
 import { NTag, NMarquee } from "naive-ui";
 import { useRouter } from "vue-router";
 import { getDictList, createDictType, updateDictType } from "@/api/dict";
 import Pagination from "@/components/table/pagination.vue";
 import DictTag from "@/components/dictTag/dictTag.vue";
-
 
 const router = useRouter();
 //校验参数ref

@@ -16,7 +16,7 @@
         <CButton @click="search" :icon="SearchCircle" type="CSuccess"
           >搜 索</CButton
         >
-        <CButton @click="addroleShow" :icon="AddCircle" type="CPrimary"
+        <CButton @click="addroleShow()" :icon="AddCircle" type="CPrimary"
           >添 加</CButton
         >
       </div>
@@ -83,20 +83,15 @@
         </n-form>
         <template #footer>
           <n-spin :show="roleShowSpin">
-            <n-button
-              @click="setroleInfo"
-              style="margin: 0 8px"
-              secondary
-              type="primary"
-              >{{ roleStatus.btn === 1 ? "添 加" : "修 改" }}</n-button
-            >
-            <n-button
-              @click="closeroleShow"
-              style="margin: 0 8px"
-              secondary
-              type="warning"
-              >取 消</n-button
-            >
+            <div style="display: flex">
+              <CButton @click="setroleInfo" :icon="AddCircle" type="CPrimary">{{
+                roleStatus.btn === 1 ? "添 加" : "修 改"
+              }}</CButton>
+              <CButton @click="closeroleShow" :icon="ReturnDownBackOutline"
+                >取 消</CButton
+              >
+            </div>
+            
           </n-spin>
         </template>
       </n-drawer-content>
@@ -112,6 +107,7 @@ import {
   HelpCircle,
   SearchCircle,
   AddCircle,
+  ReturnDownBackOutline,
 } from "@vicons/ionicons5";
 import { getRoleList, updateRoleInfo } from "@/api/role";
 import { getTreeRoutersList } from "@/api/routes";
@@ -283,11 +279,16 @@ const setroleInfo = (e) => {
 //获取角色信息
 const getroleList = () => {
   //获取平铺角色列表
-  getRoleList(Params.value).then((res) => {
-    total.value = res.total;
-    roleData.value = res.data;
-    roleShowSpin.value = false;
-  });
+  getRoleList(Params.value)
+    .then((res) => {
+      total.value = res.total;
+      roleData.value = res.data;
+      roleShowSpin.value = false;
+    })
+    .catch((err) => {
+      roleShowSpin.value = false;
+      Nmessage.error(err.message);
+    });
   //获取路由树状
   getTreeRoutersList().then((res) => {
     rolePathOption.value = res.data;
