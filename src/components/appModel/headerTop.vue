@@ -1,6 +1,8 @@
 <template>
   <header class="headerTop headerTop_bgc">
-    <h1>LOGO</h1>
+    <div class="headerTop_logo">
+      <img class="logo_img" src="../../assets/image/logo.png" alt="logo">
+    </div>
     <div style="flex: 1"></div>
     <div class="headerUser">
       <NAvatar size="large" :src="userInfo.avatar" style="cursor: pointer" />
@@ -100,6 +102,15 @@ onBeforeMount(() => {
   font-size: 1.3rem;
   font-weight: 600;
   color: #000;
+}
+
+.headerTop_logo{
+  width: 66px;
+  height: 66px;
+}
+.logo_img{
+  width: 100%;
+  height: 100%;
 }
 .headerUser {
   width: 188px;

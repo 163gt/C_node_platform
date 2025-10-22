@@ -9,7 +9,11 @@
     </div>
     <NDrawer v-model:show="active" :width="268" :placement="placement">
       <NDrawerContent header-style="height:66px;">
-        <template #header> LOGO </template>
+        <template #header>
+          <div class="sidebar_header_logo">
+            <img src="../../assets/image/logo.png" class="sidebar_logo_img" />
+          </div>
+        </template>
         <div class="sidebar_router">
           <SidebarNav :filteredRoutes="sidebarRoutes" />
         </div>
@@ -71,6 +75,14 @@ onMounted(async () => {
   position: absolute;
   left: 20px;
   top: 0%; */
+}
+.sidebar_header_logo{
+  width: 66px;
+  height: 66px;
+}
+.sidebar_logo_img{
+  width: 100%;
+  height: 100%;
 }
 .sidebar_show_svg {
   width: 100%;

@@ -162,15 +162,6 @@ const columns = ref([
         type: row.status === 1 ? "success" : "error",
         round: true,
       });
-
-      // return h(
-      //   NTag,
-      //   {
-      //     round: true,
-      //     type: row.status == 2 ? "error" : "success",
-      //   },
-      //   { default: () => (row.status == 2 ? "停用" : "正常") }
-      // );
     },
   },
   {

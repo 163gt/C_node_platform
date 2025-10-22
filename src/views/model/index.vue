@@ -31,9 +31,38 @@
       style="width: 50%; border-radius: 8px"
     >
       <template #header>
-        <div>标题</div>
+        <div>创建模型信息</div>
       </template>
-      <div>789</div>
+      <div style="width: 100%; height: auto">
+        <n-form ref="formRef" :model="modelForm" :rules="modelRules">
+          <n-form-item label="模型绑定" path="modelBind">
+            <n-select
+              v-model:value="modelForm.modelBind"
+              placeholder="请绑定使用模型"
+              :options="bindModelList"
+            />
+          </n-form-item>
+          <n-form-item path="modelName">
+            <template #label>
+              <div style="display: flex; align-items: center">
+                <span>模型名称</span>
+                <n-popover trigger="hover">
+                  <template #trigger>
+                    <Icon size="18">
+                      <HelpCircle />
+                    </Icon>
+                  </template>
+                  <span>和平台模型名称保持一致，如：hunyuan-lite</span>
+                </n-popover>
+              </div>
+            </template>
+            <n-input
+              v-model:value="modelForm.modelName"
+              placeholder="请输入模型名称"
+            />
+          </n-form-item>
+        </n-form>
+      </div>
       <template #action>
         <CButton :icon="AddCircle" type="CPrimary">添 加</CButton>
         <CButton @click="closeModal" :icon="ReturnDownBackOutline"
@@ -45,6 +74,7 @@
 </template>
 <script setup>
 import { ref } from "vue";
+import { Icon } from "@vicons/utils";
 import {
   FlashOutline,
   HelpCircle,
@@ -54,6 +84,7 @@ import {
 } from "@vicons/ionicons5";
 
 const modelShowModal = ref(false);
+const showTag = ref(1);
 
 //模型列表查询参数
 const modelParams = ref({
@@ -61,6 +92,13 @@ const modelParams = ref({
   page: 1,
   pageSize: 10,
 });
+
+const modelForm = ref({
+  modelName: "",
+  modelDesc: "",
+});
+const modelRules = ref([]);
+const bindModelList = ref([]);
 
 //搜索
 const search = () => {};
