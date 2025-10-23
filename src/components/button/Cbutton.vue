@@ -33,11 +33,11 @@ const props = defineProps({
   },
   width: {
     type: String,
-    default: "90px",
+    default: "auto",
   },
   height: {
     type: String,
-    default: "35px",
+    default: "32px",
   },
 });
 
@@ -51,7 +51,8 @@ const handleClick = (event) => {
 .C-Button {
   display: flex;
   align-items: center;
-  justify-content: flex-start;
+  justify-content: center;
+  /* justify-content: flex-start; */
   gap: 10px;
   border-radius: 30px;
   font-weight: 600;
@@ -60,7 +61,8 @@ const handleClick = (event) => {
   cursor: pointer;
   transition-duration: 0.2s;
   box-shadow: 5px 15px 10px rgba(0, 0, 0, 0.116);
-  padding-left: 8px;
+  /* padding-left: 8px; */
+  padding: 0 8px;
   transition-duration: 0.5s;
   margin: 0 5px;
 }

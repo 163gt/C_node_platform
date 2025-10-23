@@ -1,9 +1,11 @@
 import { createApp } from 'vue'
 import App from './App.vue'
+import { initThemeColor } from '@/utils/theme'
 import particleEffect from './utils/directive/particleEffect'
 import pinia from './stores'
 import router from './router'
 import { setupRouterGuard } from './router/guard'
+
 import './styles/main.scss'
 import './styles/variables.scss'
 // 引入 Naive UI
@@ -13,6 +15,8 @@ import naiveUiPlugin from "@/utils/message";  // 引入插件
 //注册组件
 // import DictTag from "@/components/dictTag/dictTag.vue"
 import CButton from "@/components/button/CButton.vue";
+
+initThemeColor()
 
 const app = createApp(App)
 // 全局注册组件

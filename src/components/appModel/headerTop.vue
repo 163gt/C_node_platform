@@ -12,6 +12,7 @@
         </Icon>
       </NDropdown>
     </div>
+    <userInfoSet v-model:visible="visible"></userInfoSet>
   </header>
 </template>
 
@@ -27,11 +28,13 @@ import {
 import { Icon } from "@vicons/utils";
 import { useRouter } from "vue-router";
 import { useAuthStore } from "@/stores/authStore";
+import userInfoSet from './userInfoSet.vue'
 
 const message = useMessage();
 const router = useRouter();
 const userStore = useAuthStore();
 const userInfo = ref({});
+const visible = ref(false);
 
 const renderIcon = (icon) => {
   return () => {
@@ -48,6 +51,7 @@ const handleSelect = (key) => {
       break;
     case "settings":
       message.info("选择了 设置");
+      visible.value = true;
       break;
     case "logout":
       message.info("选择了 退出");
