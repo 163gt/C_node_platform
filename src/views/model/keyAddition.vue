@@ -50,7 +50,7 @@
                       <HelpCircle />
                     </Icon>
                   </template>
-                  <span>自定义密钥名称,如：混元——hunyuan-lite</span>
+                  <span>和平台模型名称保持一致，如：hunyuan-lite</span>
                 </n-popover>
               </div>
             </template>

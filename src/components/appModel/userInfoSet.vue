@@ -88,7 +88,17 @@ const form2 = ref({ ...form });
 const form3 = ref({ ...form });
 
 const saveColor = (name) => {
-  setThemeColor(name, form.value.levelOne, form.value.levelTwo);
+  switch (name) {
+    case "green":
+      setThemeColor(name, form1.value.levelOne, form1.value.levelTwo);
+      break;
+    case "red":
+      setThemeColor(name, form2.value.levelOne, form2.value.levelTwo);
+      break;
+    case "purple":
+      setThemeColor(name, form3.value.levelOne, form3.value.levelTwo);
+      break;
+  }
   initThemeColor();
 };
 
@@ -103,6 +113,10 @@ const emit = defineEmits(["update:visible"]);
 const userSetShow = computed({
   get: () => props.visible,
   set: (val) => emit("update:visible", val),
+});
+
+onMounted(() => {
+  
 });
 </script>
 <style scoped>

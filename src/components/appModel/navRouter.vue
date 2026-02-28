@@ -63,7 +63,11 @@ import { ref, watch, nextTick } from "vue";
 import { routeStore } from "@/stores/routeStore";
 import { useRoute, useRouter } from "vue-router";
 import { Icon } from "@vicons/utils";
-import { BackspaceOutline, ReloadOutline,CloseOutline } from "@vicons/ionicons5";
+import {
+  BackspaceOutline,
+  ReloadOutline,
+  CloseOutline,
+} from "@vicons/ionicons5";
 
 // 引入 Pinia store
 const keepAliveRoute = routeStore(); // 从 Pinia 中获取 store 实例
