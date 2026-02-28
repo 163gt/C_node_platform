@@ -22,8 +22,6 @@ jobs:
           node-version: '20'
           # 方案1：保留缓存，若有锁文件则缓存，无则跳过（推荐）
           # cache: 'npm'
-          # 方案2：彻底关闭缓存（无锁文件时用，注释掉上面的cache，打开下面这行）
-          cache: false
 
       - name: 安装npm依赖
         run: |
