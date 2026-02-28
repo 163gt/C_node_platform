@@ -1,0 +1,1 @@
+import{_ as s,e as o,f as r,o as t}from"./index-DMicvl7E.js";const a="/assets/error-D4H5BABk.gif",c={},n={class:"error"};function _(d,e){return t(),o("div",n,[...e[0]||(e[0]=[r("div",{class:"error-img"},[r("div",{class:"error-text"},"页面走丢了~"),r("img",{src:a,alt:"error"})],-1)])])}const f=s(c,[["render",_],["__scopeId","data-v-0e2295d2"]]);export{f as default};
