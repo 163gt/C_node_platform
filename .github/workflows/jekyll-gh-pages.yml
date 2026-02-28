@@ -1,0 +1,52 @@
+name: Jekyll Deploy to GitHub Pages
+
+# 触发条件：推送到main/master分支时执行
+on:
+  push:
+    branches: [ main, master ]
+
+# 设置权限，确保能推送部署结果到gh-pages分支
+permissions:
+  contents: write
+
+jobs:
+  # 单个任务：先打包前端，再部署
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      # 步骤1：拉取仓库源码（仅源码，无dist）
+      - name: 检出源码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # 步骤2：配置Node.js环境（适配你的前端项目版本，比如20）
+      - name: 安装Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          cache: 'npm' # 缓存依赖，加速打包
+
+      # 步骤3：安装前端项目依赖
+      - name: 安装npm依赖
+        run: npm install
+
+      # 步骤4：云端打包生成dist文件夹（核心：生成部署产物）
+      - name: 构建生产环境包
+        run: npm run build
+
+      # 步骤5：创建.nojekyll文件（关键：让GitHub跳过Jekyll解析）
+      - name: 跳过Jekyll解析
+        run: touch ./dist/.nojekyll
+
+      # 步骤6：部署dist文件夹到gh-pages分支
+      - name: 部署到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          # 部署的核心：仅推送dist里的内容
+          publish_dir: ./dist
+          # 强制清空gh-pages分支旧内容，避免冗余
+          force_orphan: true
+          # 可选：若有自定义域名，可配置
+          # cname: your-domain.com
