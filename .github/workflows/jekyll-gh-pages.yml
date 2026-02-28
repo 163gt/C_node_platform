@@ -1,0 +1,46 @@
+name: Jekyll Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [ main, master ]
+
+permissions:
+  contents: write
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: 检出源码
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 安装Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          # 方案1：保留缓存，若有锁文件则缓存，无则跳过（推荐）
+          # cache: 'npm'
+
+      - name: 安装npm依赖
+        run: |
+          # 无锁文件时用npm install，有锁文件时用npm ci（更严格）
+          if [ -f package-lock.json ]; then
+            npm ci
+          else
+            npm install
+          fi
+
+      - name: 构建生产环境包
+        run: npm run build
+
+      - name: 跳过Jekyll解析
+        run: touch ./dist/.nojekyll
+
+      - name: 部署到GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist
+          force_orphan: true
